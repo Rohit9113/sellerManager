@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Inventory</title>
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles for the layout */
+    .container {
+      display: flex;
+      height: 100vh;
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    .sidebar {
+      flex-basis: 30%;
+      background-color: #000000;
+      padding: 70px;
+      margin: 0;
+    }
+
+    .content {
+      flex-basis: 70%;
+      padding: 20px;
+    }
+
+    .content h1 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Content -->
+    <div class="content">
+      <h1>Add Inventory</h1>
+      <!-- Add form to collect inventory information -->
+      <form action="/dashboard/inventory" method="POST">
+        <!-- Inventory fields -->
+        <div class="mb-3">
+          <label for="category" class="form-label">Select Category:</label>
+          <select id="category" class="form-select" name="category" required>
+            <option value="category1">Original Brand</option>
+            <option value="category2">First Copy</option>
+            <!-- Add options dynamically based on available categories -->
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="subcategory" class="form-label">Select Subcategory:</label>
+          <select id="subcategory" class="form-select" name="subcategory" required>
+            <option value="subcategory1">Best Quantity</option>
+            <option value="subcategory2">Low Quantity</option>
+            <!-- Add options dynamically based on available subcategories -->
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="productName" class="form-label">Product Name:</label>
+          <input type="text" class="form-control" id="productName" placeholder="Enter the Product Name" name="productName" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="mrp" class="form-label">MRP:</label>
+          <input type="number" class="form-control" placeholder="Enter the Price of Product" id="mrp" name="mrp" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="sp" class="form-label">SP:</label>
+          <input type="number" class="form-control" placeholder="Enter the selling Prince" id="sp" name="sp" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="images" class="form-label">Images:</label>
+          <input type="file" class="form-control" id="images" name="images" multiple required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Inventory</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Include Bootstrap JS and Popper.js (required for Bootstrap) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

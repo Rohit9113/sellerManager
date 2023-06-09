@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Seller Dashboard</title>
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles for the layout */
+    .container {
+      display: flex;
+      height: 100vh;
+      margin-right: 0; /* Remove the right margin */
+      margin-left: 0; /* Add the left margin to 0 */
+    }
+
+    .sidebar {
+      flex-basis: 30%;
+      background-color: #000000;
+      padding: 70px;
+      color: white;
+
+    }
+    .modifybutton{
+      color: white;      
+    }
+
+    .content {
+      flex-basis: 70%;
+      padding: 20px;
+    }
+
+    .content h2 {
+      margin-top: 0;
+    }
+
+    /* Style for the sidebar navigation links */
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 10px;
+    }
+
+    /* Hide the instructions initially */
+    .hide-instructions {
+      display: none;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Add links to different options -->
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link btn btn-danger" href="#" onclick="openPage('/dashboard/store-info')"><span class="modifybutton">Add Store Info</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-danger" href="#" onclick="openPage('/dashboard/category')"><span class="modifybutton">Add Category</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-danger" href="#" onclick="openPage('/dashboard/subcategory')"><span class="modifybutton">Add Sub_Category</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-danger" href="#" onclick="openPage('/dashboard/inventory')"><span class="modifybutton">Add Inventory</span></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <h2 id="page-title" style="text-align: center;">Welcome to the Seller Dashboard</h2>
+      <hr>
+      <div id="instructions" class="show-instructions">
+        <h2>Instructions</h2>
+        <p>Here you can perform various actions to manage your seller account:</p>
+        <ul>
+          <li>Add Store Info: Provide details such as address, GST, logo, and store timings.</li>
+          <li>Add Category: Create new product categories for your inventory.</li>
+          <li>Add Subcategory: Add subcategories under each category for better organization.</li>
+          <li>Add Inventory: Manage your product inventory by specifying details like category, subcategory, product name,
+            MRP, SP, quantity, and multiple images.</li>
+        </ul>
+      </div>
+
+      <div id="page-content" class="hide-instructions">
+        <!-- Display page content here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Include Bootstrap JS and Popper.js (required for Bootstrap) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function openPage(page) {
+      // Hide instructions and show page content
+      document.getElementById("instructions").classList.add("hide-instructions");
+      document.getElementById("page-content").classList.remove("hide-instructions");
+      
+      // Load the page content into the page-content div
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("page-content").innerHTML = this.responseText;
+          document.getElementById("page-title").innerHTML = getPageTitle(page);
+        }
+      };
+      xhttp.open("GET", page, true);
+      xhttp.send();
+    }
+
+    function getPageTitle(page) {
+      // Extract the page title from the URL
+      var startIndex = page.lastIndexOf("/") + 1;
+      var endIndex = page.lastIndexOf(".");
+      return page.substring(startIndex, endIndex);
+    }
+  </script>
+</body>
+
+</html>
